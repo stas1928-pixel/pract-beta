@@ -40,6 +40,11 @@ jobs:
             if (!content.get('SHA256SUMS.txt').toString('utf8').includes(expectedHash + '  Pract-0.7.1-beta.1.apk')) throw new Error('Unexpected APK checksum; stop and review the candidate.');
             const releases = await github.paginate(github.rest.repos.listReleases, {...repo, per_page:100});
             let release = releases.find(item => item.tag_name === tag);
+            if (!release) {
+              const preparedDrafts = releases.filter(item => item.draft && item.name === title);
+              if (preparedDrafts.length > 1) throw new Error('Multiple named beta drafts; review manually.');
+              release = preparedDrafts[0];
+            }
             if (release && !release.draft) {
               await core.summary.addHeading('Release already published').addLink('View release', release.html_url).addRaw('\nNo published release was modified.').write();
               return;
@@ -47,7 +52,7 @@ jobs:
             if (!release) {
               release = (await github.rest.repos.createRelease({...repo, tag_name:tag, target_commitish:context.sha, name:title, body, draft:true, prerelease:true})).data;
             } else {
-              release = (await github.rest.repos.updateRelease({...repo, release_id:release.id, name:title, body, draft:true, prerelease:true})).data;
+              release = (await github.rest.repos.updateRelease({...repo, release_id:release.id, tag_name:tag, target_commitish:context.sha, name:title, body, draft:true, prerelease:true})).data;
             }
             const assets = await github.paginate(github.rest.repos.listReleaseAssets, {...repo, release_id:release.id, per_page:100});
             for (const path of files) {
@@ -57,6 +62,7 @@ jobs:
             }
             const apkName = 'Pract-0.7.1-beta.1.apk';
             let apk = assets.find(asset => asset.name === apkName);
+            if (apk && (apk.size !== 3496982 || apk.digest !== 'sha256:' + expectedHash)) throw new Error('Existing APK asset metadata does not match audited candidate.');
             if (!apk) {
               const candidates = releases.filter(item => item.draft && item.id !== release.id)
                 .flatMap(item => (item.assets || []).filter(asset => asset.name === apkName && asset.state === 'uploaded' && asset.size === 3496982));
@@ -72,7 +78,7 @@ jobs:
                 apk = (await github.rest.repos.uploadReleaseAsset({...repo, release_id:release.id, name:apkName, data:bytes,headers:{'content-type':'application/vnd.android.package-archive','content-length':bytes.length}})).data;
               }
             }
-            const editUrl = 'https://github.com/' + repo.owner + '/' + repo.repo + '/releases/edit/' + tag;
+            const editUrl = release.html_url.replace('/releases/tag/','/releases/edit/');
             await core.summary.addHeading('Pract beta draft is prepared')
               .addLink('Open release draft', editUrl)
               .addRaw('\n\nTag, title, release notes, pre-release setting, and four text attachments are ready.\n\n' + (apk ? 'The APK is also attached. When copied from another draft, its bytes were checked against the audited checksum. The source draft was not changed.' : 'Attach only **Pract-0.7.1-beta.1.apk** from the local beta-upload folder.') + '\n\nExpected SHA-256: `' + expectedHash + '`.\n\nTest this exact beta APK on your phone before clicking Publish release. This workflow never publishes the release or enables website downloads.\n').write();
