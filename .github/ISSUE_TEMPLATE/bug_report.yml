@@ -1,0 +1,34 @@
+name: Report a reading problem
+description: Tell us what interrupted your reading. Reports are public.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: "This report is public. Never include API keys, private PDFs, email addresses, or unredacted screenshots. Use the private contact channel for personal details."
+  - type: input
+    id: version
+    attributes:
+      label: Pract version
+      placeholder: "0.7.0"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Phone model and Android version
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What did you do, and what happened?
+      description: Include expected behavior and whether it happens again. Describe the PDF type without uploading the book.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Before posting
+      options:
+        - label: I checked that this report contains no API keys or private document content.
+          required: true

@@ -1,0 +1,28 @@
+name: Share reading feedback
+description: What worked, what interrupted you, and whether you came back.
+title: "[Feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: "Public feedback only. Do not share keys, private documents, or personal contact details."
+  - type: dropdown
+    id: returned
+    attributes:
+      label: Did you return for another reading session?
+      options:
+        - "Yes"
+        - "Not yet"
+        - "No, I returned to another reader"
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: What made reading easier or harder?
+      description: Include setup friction, selection, explanation quality, speed, or export usefulness.
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: What one change would help most?
