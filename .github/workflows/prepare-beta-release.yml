@@ -1,0 +1,60 @@
+name: Prepare beta release draft
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/prepare-beta-release.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pract-beta-release-draft
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: github.repository == 'stas1928-pixel/pract-beta' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Set release details and attach public instructions
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        with:
+          script: |
+            const repo = context.repo;
+            const tag = 'v0.7.1-beta.1';
+            const title = 'Pract Beta 0.7.1-beta.1';
+            const files = ['INSTALL.txt','RELEASE-NOTES.txt','RIGHTS.txt','SHA256SUMS.txt'];
+            const content = new Map();
+            for (const path of files) {
+              const result = await github.rest.repos.getContent({...repo, path, ref: context.sha});
+              if (result.data.type !== 'file' || result.data.encoding !== 'base64') throw new Error('Expected a public text file: ' + path);
+              content.set(path, Buffer.from(result.data.content.replace(/\s/g,''),'base64'));
+            }
+            const body = content.get('RELEASE-NOTES.txt').toString('utf8');
+            const expectedHash = '6c0b914ff25dfd0107e572973d803f94ae43539c831babc57ee1465207834cdb';
+            if (!content.get('SHA256SUMS.txt').toString('utf8').includes(expectedHash + '  Pract-0.7.1-beta.1.apk')) throw new Error('Unexpected APK checksum; stop and review the candidate.');
+            const releases = await github.paginate(github.rest.repos.listReleases, {...repo, per_page:100});
+            let release = releases.find(item => item.tag_name === tag);
+            if (release && !release.draft) {
+              await core.summary.addHeading('Release already published').addLink('View release', release.html_url).addRaw('\nNo published release was modified.').write();
+              return;
+            }
+            if (!release) {
+              release = (await github.rest.repos.createRelease({...repo, tag_name:tag, target_commitish:context.sha, name:title, body, draft:true, prerelease:true})).data;
+            } else {
+              release = (await github.rest.repos.updateRelease({...repo, release_id:release.id, name:title, body, draft:true, prerelease:true})).data;
+            }
+            const assets = await github.paginate(github.rest.repos.listReleaseAssets, {...repo, release_id:release.id, per_page:100});
+            for (const path of files) {
+              if (assets.some(asset => asset.name === path)) continue;
+              const data = content.get(path);
+              await github.rest.repos.uploadReleaseAsset({...repo, release_id:release.id, name:path, data, headers:{'content-type':'text/plain; charset=utf-8','content-length':data.length}});
+            }
+            const editUrl = 'https://github.com/' + repo.owner + '/' + repo.repo + '/releases/edit/' + tag;
+            await core.summary.addHeading('Pract beta draft is prepared')
+              .addLink('Open release draft', editUrl)
+              .addRaw('\n\nTag, title, release notes, pre-release setting, and four text attachments are ready.\n\nAttach only **Pract-0.7.1-beta.1.apk** from the local beta-upload folder. The expected SHA-256 is `' + expectedHash + '`.\n\nTest this exact beta APK on your phone before clicking Publish release. This workflow never publishes the release or enables website downloads.\n').write();
+
