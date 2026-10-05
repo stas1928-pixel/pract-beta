@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Set release details and attach public instructions
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        env:
+          GH_TOKEN: ${{ github.token }}
         with:
           script: |
             const repo = context.repo;
@@ -53,8 +55,25 @@ jobs:
               const data = content.get(path);
               await github.rest.repos.uploadReleaseAsset({...repo, release_id:release.id, name:path, data, headers:{'content-type':'text/plain; charset=utf-8','content-length':data.length}});
             }
+            const apkName = 'Pract-0.7.1-beta.1.apk';
+            let apk = assets.find(asset => asset.name === apkName);
+            if (!apk) {
+              const candidates = releases.filter(item => item.draft && item.id !== release.id)
+                .flatMap(item => (item.assets || []).filter(asset => asset.name === apkName && asset.state === 'uploaded' && asset.size === 3496982));
+              if (candidates.length > 1) throw new Error('Multiple APK candidates; review manually.');
+              if (candidates.length === 1) {
+                const candidate = candidates[0];
+                const assetUrl = 'https://api.github.com/repos/' + repo.owner + '/' + repo.repo + '/releases/assets/' + candidate.id;
+                const response = await fetch(assetUrl, {headers:{Accept:'application/octet-stream',Authorization:'Bearer ' + process.env.GH_TOKEN,'X-GitHub-Api-Version':'2022-11-28'},signal:AbortSignal.timeout(30000)});
+                if (!response.ok) throw new Error('Could not retrieve uploaded APK.');
+                const bytes = Buffer.from(await response.arrayBuffer());
+                const hash = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
+                if (bytes.length !== 3496982 || hash !== expectedHash) throw new Error('Uploaded APK does not match audited candidate; stop.');
+                apk = (await github.rest.repos.uploadReleaseAsset({...repo, release_id:release.id, name:apkName, data:bytes,headers:{'content-type':'application/vnd.android.package-archive','content-length':bytes.length}})).data;
+              }
+            }
             const editUrl = 'https://github.com/' + repo.owner + '/' + repo.repo + '/releases/edit/' + tag;
             await core.summary.addHeading('Pract beta draft is prepared')
               .addLink('Open release draft', editUrl)
-              .addRaw('\n\nTag, title, release notes, pre-release setting, and four text attachments are ready.\n\nAttach only **Pract-0.7.1-beta.1.apk** from the local beta-upload folder. The expected SHA-256 is `' + expectedHash + '`.\n\nTest this exact beta APK on your phone before clicking Publish release. This workflow never publishes the release or enables website downloads.\n').write();
+              .addRaw('\n\nTag, title, release notes, pre-release setting, and four text attachments are ready.\n\n' + (apk ? 'The APK is also attached. When copied from another draft, its bytes were checked against the audited checksum. The source draft was not changed.' : 'Attach only **Pract-0.7.1-beta.1.apk** from the local beta-upload folder.') + '\n\nExpected SHA-256: `' + expectedHash + '`.\n\nTest this exact beta APK on your phone before clicking Publish release. This workflow never publishes the release or enables website downloads.\n').write();
 
