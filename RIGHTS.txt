@@ -1,8 +1,8 @@
-PRACT — RIGHTS NOTICE (DRAFT FOR REVIEW)
+PRACT — RIGHTS NOTICE
 
 Copyright 2026 Stas Moyseev. All rights reserved in original Pract code, design, and publication material to the extent owned by Stas Moyseev.
 
-Pract is not being offered under an open-source licence. Publishing beta information or a binary does not grant a general licence to Pract's original source code. Approved beta testers will receive a limited permission to install and evaluate the designated beta build; final beta terms must identify the owner and contact channel before invitations open.
+Pract is not being offered under an open-source licence. Publishing beta information or a binary does not grant a general licence to Pract's original source code. Stas Moyseev grants beta testers limited permission to install and use the designated beta binary for evaluation. Third-party licences remain in force. Contact: stas1928@gmail.com.
 
 Third-party components retain their own licences and notices. No claim is made to ownership of third-party libraries, readers' books, or other users' vocabulary data. AI-generated output may have a different rights status from original authored work.
 

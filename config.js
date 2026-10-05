@@ -2,6 +2,7 @@
 // Do not open invitations until eligibility, privacy, signing, and distribution checks pass.
 window.PRACT_BETA = Object.freeze({
   invitationsOpen: false,
+  betaVersion: '0.7.1-beta.1',
   installUrl: '',
   repositoryUrl: 'https://github.com/stas1928-pixel/pract-beta',
   feedbackEmail: 'stas1928@gmail.com',

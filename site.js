@@ -2,6 +2,7 @@
   'use strict';
   const config = window.PRACT_BETA || {};
   const $ = id => document.getElementById(id);
+  if (typeof config.betaVersion === 'string') $('version').value = config.betaVersion.slice(0,30);
   function safeHttps(value) {
     try { const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password ? url.href : ''; } catch { return ''; }
   }

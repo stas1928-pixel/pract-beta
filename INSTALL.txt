@@ -1,0 +1,43 @@
+PRACT BETA — ANDROID INSTALLATION
+Version: 0.7.1-beta.1
+Android: 8.0 or newer. PDF reader; no OCR or EPUB support yet.
+Support: stas1928@gmail.com
+
+OFFICIAL SOURCE
+Only use the APK attached to the official GitHub prerelease:
+https://github.com/stas1928-pixel/pract-beta/releases/tag/v0.7.1-beta.1
+Expected filename: Pract-0.7.1-beta.1.apk
+Compare its SHA-256 with the accompanying SHA256SUMS.txt if you can. A checksum confirms matching files, not independent proof of safety.
+
+INSTALL
+1. Open the official release page on your Android phone. Expand Assets and download the APK.
+2. Find it under your browser's Downloads or My Files > Downloads, then open it.
+3. Android may ask to permit installs from this browser or file app. If you choose to proceed, allow only that source for this install, then turn the permission off again afterwards.
+4. Install Pract Beta. No USB or payment to Pract is required.
+5. If the system specifically identifies malware, stop and report the exact warning. Do not disable Play Protect, Samsung security features, or device-wide security to force installation. Generic download/unknown-source warnings may still occur; release signing does not remove all warnings. Managed/work devices may block installation.
+
+EXISTING DEVELOPMENT INSTALL
+Pract Beta is a separate app with its own storage and settings. Your existing Pract development install can remain untouched. Data is not automatically transferred between them. Export words from the old app if desired; this beta does not yet import that export. Later beta updates use the same beta package/signing key; install them over the existing beta, without uninstalling first.
+
+AI SETUP / ELIGIBILITY
+This first beta requires your own Gemini API key. Do not borrow the developer's key or share your own in feedback. This beta is for adults (18+) in Google's supported regions outside the EEA, Switzerland and UK, where Google's current terms require paid services. Review current terms and eligibility before participating:
+https://ai.google.dev/gemini-api/terms
+https://ai.google.dev/gemini-api/docs/available-regions
+
+1. Open https://aistudio.google.com/ using your own Google account.
+2. Review provider terms. Use a free-tier project and verify billing is disabled if you want no paid API usage. Pract cannot disable billing or verify your quota.
+3. Create a Gemini key. In Pract Beta, open AI settings and paste only the key.
+4. Read the privacy/eligibility explanation and confirm only if it applies to you.
+5. Add a selectable-text PDF and hold a word. Extend the handles for a short phrase if useful.
+
+On lookup, the selected word/phrase and up to 500 characters of nearby text go to Google. The whole PDF is not uploaded. Google may use free-tier inputs/outputs to improve its products. Don't use confidential documents. Explanations may be wrong. Free quotas can run out; no availability guarantee is provided.
+
+WORDS / DATA
+Saved vocabulary, reading time, and PDF references are stored locally. Saved meanings can be reopened offline. Export your Words as CSV before uninstalling or clearing data. Original PDFs are not deleted by removing them from Pract. No automatic cloud backup or cross-app migration is included.
+
+FEEDBACK
+Read for 10–15 minutes, try one word and one phrase, reopen your PDF, and export a saved entry. Return for another session during the week if useful.
+Tell us what interrupted your reading, whether the explanation fitted the sentence, and whether you returned.
+Private feedback: stas1928@gmail.com
+Public issues: https://github.com/stas1928-pixel/pract-beta/issues/new/choose
+Never attach keys, private PDFs, or unredacted screenshots. Feedback is voluntary; no hidden analytics are included in this build.

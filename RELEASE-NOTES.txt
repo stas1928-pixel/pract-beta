@@ -1,0 +1,25 @@
+Pract Beta 0.7.1-beta.1 — first externally distributable beta candidate
+
+This build packages the tested Pract reader experience as a non-debuggable, release-signed Android beta. It uses a separate package (app.pract.reader.beta) and name (Pract Beta), so older development installs do not have to be removed.
+
+Included:
+- Full-screen continuous PDF reading, pinch zoom, and word/phrase selection.
+- Simple contextual AI meanings and examples using your own eligible Gemini key.
+- Saved vocabulary, bulk deletion, CSV export.
+- Current-book resume, removable library cards, reading statistics, medium coral daily-goal semicircle.
+- Expanded AI privacy, adult/region eligibility, and free-billing confirmation.
+- Original copyright and bundled third-party notices.
+
+Known limitations:
+- No scanned-page OCR, EPUB, cloud backup, export import, or automatic transfer from the development app.
+- Daily reading goal is still 30 minutes.
+- Earlier development versions were exercised on the developer's Samsung device; this release candidate has desktop-browser and native unit checks, but still needs its first physical-phone installation check. Broader device compatibility is unverified.
+- Browser/Android sideload warnings may appear. Never disable Play Protect to force installation.
+- Own-key setup remains an early-beta compromise. Shared developer-funded AI and word-review/community features are not implemented.
+
+Licence: limited permission to install and evaluate this designated beta, not an open-source licence to Pract's original code. Third-party licences remain in force. See RIGHTS.txt and the bundled NOTICE.txt.
+
+Read INSTALL.txt and the accompanying SHA256SUMS.txt. Do not upload any key or private document content in feedback.
+
+Contact: stas1928@gmail.com
+Website: https://stas1928-pixel.github.io/pract-beta/
