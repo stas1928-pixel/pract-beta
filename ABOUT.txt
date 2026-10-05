@@ -2,13 +2,16 @@ Pract — Read without interruption
 
 Experimental Android PDF reader with contextual explanations for selected words and phrases, saved vocabulary, and CSV export.
 
-This repository contains the public beta landing page and feedback templates, not Pract's proprietary application source. No public beta binary is available yet. Invitations and the install link remain closed while distribution signing and eligibility checks are completed.
+This repository contains the public beta landing page, signed Android beta release, and feedback templates, not Pract's proprietary application source. Pract Beta 0.7.1-beta.1 is available for evaluation. Read INSTALL.txt and the eligibility and privacy information before installing.
+
+Website: https://stas1928-pixel.github.io/pract-beta/
+Release: https://github.com/stas1928-pixel/pract-beta/releases/tag/v0.7.1-beta.1
 
 Contact and private feedback: stas1928@gmail.com
 Public feedback: https://github.com/stas1928-pixel/pract-beta/issues/new/choose
 Do not post API keys, private documents, or unredacted screenshots in issues.
 
-The first planned beta uses each tester's own eligible Gemini API key. Pract sends the selected word/phrase and a short excerpt to Google for explanations, not the entire book. AI answers can be wrong. Check the page's provider, privacy, and regional eligibility explanations before applying.
+The beta uses each tester's own eligible Gemini API key. Pract sends the selected word/phrase and a short excerpt to Google for explanations, not the entire book. AI answers can be wrong. Check the page's provider, privacy, and regional eligibility explanations before installing.
 
 Saved-word review and a possible separate learning app remain future design decisions. Vocabulary sharing is not implemented.
 

@@ -15,7 +15,7 @@
   link('contact-link', email ? 'mailto:' + email : '');
   if (config.invitationsOpen === true && install && email && config.copyrightOwner && repo) {
     link('install-link', install);
-    $('launch-status').textContent = 'Small-group beta invitations are open. Review setup, eligibility, and privacy before installing.';
+    $('launch-status').textContent = 'The Android beta is available. Review setup, eligibility, and privacy before installing.';
   }
   $('feedback-form').addEventListener('submit', event => {
     event.preventDefault();
