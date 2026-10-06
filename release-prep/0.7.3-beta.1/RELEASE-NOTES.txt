@@ -1,0 +1,30 @@
+Pract Beta 0.7.3-beta.1
+
+An Android PDF reader that explains selected English words and phrases without switching to a search tab. Saved vocabulary can be revisited offline and exported as CSV. This is an early beta, not a Play Store release.
+
+New since the public 0.7.1 beta:
+- Smoother pinch-zoom preview, with sharp page redraw after releasing your fingers. Further refinement may still be needed.
+- Import vocabulary CSV files from Words. Preview counts before confirming; matching words are skipped without overwriting existing meanings. Import is local, requires no AI request, and preserves existing saved words.
+- Compatible with Pract's Word, Meaning, Example, Source CSV export, including common Excel BOM/header variations. UTF-8, 2 MB maximum, up to 10,000 entries.
+
+Update safely:
+Install this signed APK over Pract Beta without uninstalling or clearing data. Same beta package and release signer as 0.7.1. The older development app named Pract is separate: export its words, then import the CSV in Pract Beta. This does not transfer PDFs, reading positions, statistics or API settings. Keep the original app and exported CSV until you verify the import.
+
+Verification:
+Build, native unit tests, browser reader/selection/zoom/import regression checks, packaged-source matching, signing and credential audits passed. The owner tested zoom and vocabulary import on their Samsung S24 FE. Compatibility on other devices remains unverified.
+
+Limitations:
+- Selectable-text PDFs only; no scanned-page OCR or EPUB.
+- New AI explanations require your own eligible Gemini key and an internet connection. Quotas apply; explanations can be wrong.
+- No shared developer-funded AI, automatic cloud backup, flashcards or community vocabulary sharing.
+- CSV export is a vocabulary backup, not a full app backup.
+- Sideload warnings may occur. Never disable Play Protect to force installation.
+- Daily reading goal remains 30 minutes.
+
+Eligibility/privacy: adults in supported regions outside the EEA, UK and Switzerland for this free-key beta; review current provider terms. Selected text and up to 500 nearby characters go to Google, not the entire PDF. Free-tier inputs/outputs may be used for provider improvement. Do not use confidential documents.
+
+Original work copyright 2026 Stas Moyseev. Limited beta evaluation permission, not an open-source licence. Third-party licences remain in force; see RIGHTS.txt and bundled notices.
+Support: stas1928@gmail.com
+Feedback: https://github.com/stas1928-pixel/pract-beta/issues/new/choose
+Website: https://stas1928-pixel.github.io/pract-beta/
+Read INSTALL.txt and SHA256SUMS.txt before installing. Never include API keys or private document content in feedback.
