@@ -1,43 +1,40 @@
 PRACT BETA — ANDROID INSTALLATION
-Version: 0.7.1-beta.1
-Android: 8.0 or newer. PDF reader; no OCR or EPUB support yet.
+Version: 0.7.3-beta.1
+Android: 8.0 or newer. Selectable-text PDFs; no OCR or EPUB.
 Support: stas1928@gmail.com
 
 OFFICIAL SOURCE
-Only use the APK attached to the official GitHub prerelease:
-https://github.com/stas1928-pixel/pract-beta/releases/tag/v0.7.1-beta.1
-Expected filename: Pract-0.7.1-beta.1.apk
-Compare its SHA-256 with the accompanying SHA256SUMS.txt if you can. A checksum confirms matching files, not independent proof of safety.
+https://github.com/stas1928-pixel/pract-beta/releases/tag/v0.7.3-beta.1
+Expected filename: Pract-0.7.3-beta.1.apk
+SHA256: 84be59f36cae54790740c27ed7cc51a711fe0823a87b79b7c636485e449ca205
+A checksum confirms matching bytes, not independent proof of safety.
 
-INSTALL
-1. Open the official release page on your Android phone. Expand Assets and download the APK.
-2. Find it under your browser's Downloads or My Files > Downloads, then open it.
-3. Android may ask to permit installs from this browser or file app. If you choose to proceed, allow only that source for this install, then turn the permission off again afterwards.
-4. Install Pract Beta. No USB or payment to Pract is required.
-5. If the system specifically identifies malware, stop and report the exact warning. Do not disable Play Protect, Samsung security features, or device-wide security to force installation. Generic download/unknown-source warnings may still occur; release signing does not remove all warnings. Managed/work devices may block installation.
+INSTALL / UPDATE
+1. On your Android phone, open the official release, expand Assets and download the APK.
+2. Open it from your browser's Downloads or My Files > Downloads.
+3. If you choose to permit installation from this browser/file app, allow only that source for this install, then turn the permission off afterwards.
+4. Install over an existing Pract Beta; DO NOT uninstall or clear data first. No USB or payment to Pract is required.
+5. If the system specifically identifies malware, stop and report the exact warning. Do not disable Play Protect, Samsung security features or device-wide security. Generic download/unknown-source warnings may still occur. Managed/work devices may block installation.
 
-EXISTING DEVELOPMENT INSTALL
-Pract Beta is a separate app with its own storage and settings. Your existing Pract development install can remain untouched. Data is not automatically transferred between them. Export words from the old app if desired; this beta does not yet import that export. Later beta updates use the same beta package/signing key; install them over the existing beta, without uninstalling first.
+MIGRATE WORDS FROM THE OLDER PRACT DEVELOPMENT APP
+The apps have separate storage. In Pract, export Words as CSV. In Pract Beta, open Words > Import words · CSV, choose that file, review counts and confirm. Existing matching words retain their meanings. Keep the original app and CSV until you check the result. This transfers vocabulary only, not PDFs, positions, reading statistics or AI settings.
 
 AI SETUP / ELIGIBILITY
-This first beta requires your own Gemini API key. Do not borrow the developer's key or share your own in feedback. This beta is for adults (18+) in Google's supported regions outside the EEA, Switzerland and UK, where Google's current terms require paid services. Review current terms and eligibility before participating:
+Use your own Gemini key; never borrow the developer's or share yours in feedback. This free-key beta is for adults (18+) in Google's supported regions outside the EEA, UK and Switzerland, where current provider terms require paid services. Review current terms and availability first:
 https://ai.google.dev/gemini-api/terms
 https://ai.google.dev/gemini-api/docs/available-regions
 
-1. Open https://aistudio.google.com/ using your own Google account.
-2. Review provider terms. Use a free-tier project and verify billing is disabled if you want no paid API usage. Pract cannot disable billing or verify your quota.
-3. Create a Gemini key. In Pract Beta, open AI settings and paste only the key.
-4. Read the privacy/eligibility explanation and confirm only if it applies to you.
-5. Add a selectable-text PDF and hold a word. Extend the handles for a short phrase if useful.
+1. Open https://aistudio.google.com/ with your own Google account and review the terms.
+2. Use a free-tier project and verify billing is disabled if you want no paid API usage. Pract cannot enforce billing settings or verify your quota.
+3. Create a key. Open AI settings in Pract Beta and paste only the key.
+4. Read and confirm the privacy/eligibility explanation only if it applies to you.
+5. Add a selectable-text PDF and hold an unfamiliar word. Extend the handles for a short phrase if useful.
 
-On lookup, the selected word/phrase and up to 500 characters of nearby text go to Google. The whole PDF is not uploaded. Google may use free-tier inputs/outputs to improve its products. Don't use confidential documents. Explanations may be wrong. Free quotas can run out; no availability guarantee is provided.
+Selected text and up to 500 nearby characters go to Google for a lookup; the whole PDF is not uploaded. Google may use free-tier inputs/outputs to improve its products. Do not use confidential documents. Answers can be wrong and free quotas can run out.
 
-WORDS / DATA
-Saved vocabulary, reading time, and PDF references are stored locally. Saved meanings can be reopened offline. Export your Words as CSV before uninstalling or clearing data. Original PDFs are not deleted by removing them from Pract. No automatic cloud backup or cross-app migration is included.
-
-FEEDBACK
-Read for 10–15 minutes, try one word and one phrase, reopen your PDF, and export a saved entry. Return for another session during the week if useful.
-Tell us what interrupted your reading, whether the explanation fitted the sentence, and whether you returned.
+DATA / FEEDBACK
+Vocabulary, reading time and PDF references are local. Saved meanings reopen offline. Export Words before uninstalling or clearing data. Removing a book from Pract does not delete the original PDF. No automatic cloud backup or full-app restore is included.
+Try one word/phrase lookup, continue reading, and tell us what interrupted the flow. Setup blockers are useful feedback too. If you return for another session, we'd like to hear that.
 Private feedback: stas1928@gmail.com
-Public issues: https://github.com/stas1928-pixel/pract-beta/issues/new/choose
-Never attach keys, private PDFs, or unredacted screenshots. Feedback is voluntary; no hidden analytics are included in this build.
+Public feedback: https://github.com/stas1928-pixel/pract-beta/issues/new/choose
+Never attach API keys, private PDFs or unredacted screenshots. Feedback is voluntary; there are no hidden analytics in this build.

@@ -1,11 +1,11 @@
 Pract — Read without interruption
 
-Experimental Android PDF reader with contextual explanations for selected words and phrases, saved vocabulary, and CSV export.
+Experimental Android PDF reader with contextual explanations for selected words and phrases, saved vocabulary, and local CSV export/import.
 
-This repository contains the public beta landing page, signed Android beta release, and feedback templates, not Pract's proprietary application source. Pract Beta 0.7.1-beta.1 is available for evaluation. Read INSTALL.txt and the eligibility and privacy information before installing.
+This repository contains the public beta landing page, signed Android beta release, and feedback templates, not Pract's proprietary application source. Pract Beta 0.7.3-beta.1 is available for evaluation. Read INSTALL.txt and the eligibility and privacy information before installing.
 
 Website: https://stas1928-pixel.github.io/pract-beta/
-Release: https://github.com/stas1928-pixel/pract-beta/releases/tag/v0.7.1-beta.1
+Release: https://github.com/stas1928-pixel/pract-beta/releases/tag/v0.7.3-beta.1
 
 Contact and private feedback: stas1928@gmail.com
 Public feedback: https://github.com/stas1928-pixel/pract-beta/issues/new/choose

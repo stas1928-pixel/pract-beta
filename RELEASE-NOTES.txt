@@ -1,25 +1,30 @@
-Pract Beta 0.7.1-beta.1 — first externally distributable beta candidate
+Pract Beta 0.7.3-beta.1
 
-This build packages the tested Pract reader experience as a non-debuggable, release-signed Android beta. It uses a separate package (app.pract.reader.beta) and name (Pract Beta), so older development installs do not have to be removed.
+An Android PDF reader that explains selected English words and phrases without switching to a search tab. Saved vocabulary can be revisited offline and exported as CSV. This is an early beta, not a Play Store release.
 
-Included:
-- Full-screen continuous PDF reading, pinch zoom, and word/phrase selection.
-- Simple contextual AI meanings and examples using your own eligible Gemini key.
-- Saved vocabulary, bulk deletion, CSV export.
-- Current-book resume, removable library cards, reading statistics, medium coral daily-goal semicircle.
-- Expanded AI privacy, adult/region eligibility, and free-billing confirmation.
-- Original copyright and bundled third-party notices.
+New since the public 0.7.1 beta:
+- Smoother pinch-zoom preview, with sharp page redraw after releasing your fingers. Further refinement may still be needed.
+- Import vocabulary CSV files from Words. Preview counts before confirming; matching words are skipped without overwriting existing meanings. Import is local, requires no AI request, and preserves existing saved words.
+- Compatible with Pract's Word, Meaning, Example, Source CSV export, including common Excel BOM/header variations. UTF-8, 2 MB maximum, up to 10,000 entries.
 
-Known limitations:
-- No scanned-page OCR, EPUB, cloud backup, export import, or automatic transfer from the development app.
-- Daily reading goal is still 30 minutes.
-- Earlier development versions were exercised on the developer's Samsung device; this release candidate has desktop-browser and native unit checks, but still needs its first physical-phone installation check. Broader device compatibility is unverified.
-- Browser/Android sideload warnings may appear. Never disable Play Protect to force installation.
-- Own-key setup remains an early-beta compromise. Shared developer-funded AI and word-review/community features are not implemented.
+Update safely:
+Install this signed APK over Pract Beta without uninstalling or clearing data. Same beta package and release signer as 0.7.1. The older development app named Pract is separate: export its words, then import the CSV in Pract Beta. This does not transfer PDFs, reading positions, statistics or API settings. Keep the original app and exported CSV until you verify the import.
 
-Licence: limited permission to install and evaluate this designated beta, not an open-source licence to Pract's original code. Third-party licences remain in force. See RIGHTS.txt and the bundled NOTICE.txt.
+Verification:
+Build, native unit tests, browser reader/selection/zoom/import regression checks, packaged-source matching, signing and credential audits passed. The owner tested zoom and vocabulary import on their Samsung S24 FE. Compatibility on other devices remains unverified.
 
-Read INSTALL.txt and the accompanying SHA256SUMS.txt. Do not upload any key or private document content in feedback.
+Limitations:
+- Selectable-text PDFs only; no scanned-page OCR or EPUB.
+- New AI explanations require your own eligible Gemini key and an internet connection. Quotas apply; explanations can be wrong.
+- No shared developer-funded AI, automatic cloud backup, flashcards or community vocabulary sharing.
+- CSV export is a vocabulary backup, not a full app backup.
+- Sideload warnings may occur. Never disable Play Protect to force installation.
+- Daily reading goal remains 30 minutes.
 
-Contact: stas1928@gmail.com
+Eligibility/privacy: adults in supported regions outside the EEA, UK and Switzerland for this free-key beta; review current provider terms. Selected text and up to 500 nearby characters go to Google, not the entire PDF. Free-tier inputs/outputs may be used for provider improvement. Do not use confidential documents.
+
+Original work copyright 2026 Stas Moyseev. Limited beta evaluation permission, not an open-source licence. Third-party licences remain in force; see RIGHTS.txt and bundled notices.
+Support: stas1928@gmail.com
+Feedback: https://github.com/stas1928-pixel/pract-beta/issues/new/choose
 Website: https://stas1928-pixel.github.io/pract-beta/
+Read INSTALL.txt and SHA256SUMS.txt before installing. Never include API keys or private document content in feedback.
